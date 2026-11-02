@@ -1,0 +1,6 @@
+node_modules/
+dist/
+sources/
+*.log
+.DS_Store
+dev-dist/
