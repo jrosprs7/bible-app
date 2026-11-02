@@ -7,7 +7,8 @@ import { registerSW } from "virtual:pwa-register";
 import App from "./App";
 import "./styles.css";
 
-registerSW({ immediate: true });
+// Offline support. Skipped when embedded in a frame (e.g. a preview), where service workers can't run.
+if ("serviceWorker" in navigator && window.top === window) registerSW({ immediate: true });
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
