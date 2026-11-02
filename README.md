@@ -19,6 +19,13 @@ The generated Bible data is committed in `public/data/kjv/`, so you don't need t
 npm run data       # downloads the pinned sources into sources/, checks their SHA-256, rebuilds public/data/kjv/
 ```
 
+## Windows app
+
+The same web code is wrapped as a native Windows app with [Tauri](https://tauri.app) (`src-tauri/`).
+
+- **Download:** every push runs the **Windows app** workflow (Actions tab). Open the latest run and download the **Bible-Windows-installer** artifact. It contains a `…-setup.exe` and a `.msi`. The installer isn't code-signed yet, so Windows SmartScreen will say "Windows protected your PC". Click **More info → Run anyway**.
+- **Build it yourself on Windows:** install [Rust](https://rustup.rs) and Node 20+, then run `npm install` and `npm run desktop:build`. Use `npm run desktop:dev` for a live-reloading window.
+
 ## How the text is laid out
 
 Most Bible software stores `book → chapter → verse` and prints each verse on its own line. Here, the text is stored as **blocks**, and verse numbers sit inside the running text as markers:

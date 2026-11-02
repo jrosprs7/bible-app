@@ -7,8 +7,10 @@ import { registerSW } from "virtual:pwa-register";
 import App from "./App";
 import "./styles.css";
 
-// Offline support. Skipped when embedded in a frame (e.g. a preview), where service workers can't run.
-if ("serviceWorker" in navigator && window.top === window) registerSW({ immediate: true });
+// Offline support for the web version. Skipped inside a frame (e.g. a preview), where service
+// workers can't run, and in the desktop app, which already ships every file locally.
+const isDesktopApp = "__TAURI_INTERNALS__" in window;
+if ("serviceWorker" in navigator && window.top === window && !isDesktopApp) registerSW({ immediate: true });
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
